@@ -1,0 +1,60 @@
+{
+  "name": "school",
+  "version": "1.3.3",
+  "description": "Freelancing On Linux",
+  "main": "index.js",
+  "repository": {
+    "url": "git+https://gitlab.com/LinuxGun/back-office-npm.git"
+  },
+  "scripts": {
+    "test": "cypress open",
+    "dev:design": "webpack --watch",
+    "dev:hugo": "cd hugo && hugo server --disableFastRender",
+    "dev": "concurrently \"npm run dev:hugo\" \"npm run dev:design\"",
+    "build:design": "webpack",
+    "build:hugo": "cd hugo && hugo",
+    "build:components": "cd components && npm run build",
+    "build": "rm -rf public && npm run build:design && npm run build:components && npm run build:hugo",
+    "algolia": "atomic-algolia",
+    "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting",
+    "link-upstream": "git remote add upstream https://github.com/fireship-io/fireship.io",
+    "sync": "git fetch && git checkout master && git merge upstream/master && git push",
+    "reset": "rm -rf ./node_modules ./package-lock.json && npm install && npm run dev"
+  },
+  "keywords": [],
+  "author": "masum",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.9.1",
+    "hotroute": "0.0.7",
+    "npm-check-updates": "^16.0.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.1.0",
+    "assets-webpack-plugin": "^7.1.1",
+    "atomic-algolia": "^0.3.19",
+    "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.3.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "cypress": "^10.3.1",
+    "firebase-admin": "^11.0.1",
+    "firebase-tools": "^11.4.0",
+    "fs-extra": "^10.1.0",
+    "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/LinuxGun/back-office-npm/-/issues"
+  },
+  "homepage": "https://gitlab.com/LinuxGun/back-office-npm#readme",
+  "packageManager": "yarn@3.2.2"
+}
